@@ -27,6 +27,8 @@ int request(sqlite3 *db, std::string sql, char *zErrMsg) {
 }
 
 int main(int argc, char* argv[]) {
+    using_history();
+
     // create smth
     int rc;
     sqlite3 *db;
@@ -50,6 +52,7 @@ int main(int argc, char* argv[]) {
 
     while (1) {
         char *str = readline(": ");
+        add_history(str);
         all += str;
 
         std::size_t found = all.find(";");
