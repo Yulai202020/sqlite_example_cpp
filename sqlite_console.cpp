@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
     sqlite3 *db;
     char *zErrMsg;
 
-    if (argc < 2) {
+    if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <sqlite_db>" << std::endl;
         return 0;
     }
