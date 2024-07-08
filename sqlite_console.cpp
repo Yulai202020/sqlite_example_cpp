@@ -64,5 +64,8 @@ int main(int argc, char* argv[]) {
 
     // close db
     sqlite3_close(db);
+    
+    free(zErrMsg);
+    free(db);
     return 0;
 }

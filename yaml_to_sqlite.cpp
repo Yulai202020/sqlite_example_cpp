@@ -32,6 +32,7 @@ int request(sqlite3 *db, std::string sql, char *zErrMsg) {
 int createTable(sqlite3* db) {
     char* errMsg = nullptr;
     int rc = request(db, "CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, city TEXT);", errMsg);
+    free(errMsg);
     return rc;
 }
 
@@ -45,6 +46,8 @@ int insertData(sqlite3* db, int id, const std::string& name, int age, const std:
         sqlite3_free(errMsg);
         return rc;
     }
+
+    free(errMsg);
 
     return SQLITE_OK;
 }
@@ -87,5 +90,7 @@ int main(int argc, char* argv[]) {
     parseYamlAndInsert(db, filename_yaml);
 
     sqlite3_close(db);
+
+    free(db);
     return 0;
 }
